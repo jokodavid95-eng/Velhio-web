@@ -1,0 +1,313 @@
+/* ============================================================
+   Velhio · Uruguay × Grecia Antigua
+   Azul azulejo + blanco + crema + negro carbón
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cinzel:wght@500;600;700;900&family=Archivo+Black&family=Manrope:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&display=swap');
+
+:root {
+  /* ===== Paleta (modo noche — default) ===== */
+  --blue-deep:       #1C3563;   /* azulejo griego profundo — fondo noche */
+  --blue-tile:       #2E4A7E;   /* azul azulejo griego — signature */
+  --blue-mid:        #3E5F9F;   /* azul medio */
+  --blue-soft:       #6B8ABF;   /* azul claro suave */
+  --blue-wash:       #A9BDDC;   /* pálido / overlay */
+  --cream:           #F2EADA;   /* crema cálido */
+  --cream-soft:      #FBF6EB;   /* casi blanco cálido */
+  --bone:            #FFFFFF;   /* blanco puro usado en acentos */
+  --carbon:          #17181B;   /* negro carbón */
+  --carbon-soft:     #24262B;   /* negro elevado */
+  --gold:            #D4A84A;   /* oro suave para acentos (moneda griega) */
+  --gold-deep:       #A37F2F;
+  --terracotta:      #B84C38;   /* rojo cerámica griega para destacados */
+  --olive:           #6E7A3B;
+
+  /* Mapeo semántico */
+  --bg:              var(--blue-deep);
+  --bg-elev:         var(--blue-tile);
+  --bg-panel:        var(--carbon-soft);
+  --paper:           var(--cream);
+  --paper-soft:      var(--cream-soft);
+  --ink:             var(--cream);           /* texto sobre azul */
+  --ink-on-paper:    var(--carbon);          /* texto sobre crema */
+  --ink-dim:         rgba(242, 234, 218, 0.68);
+  --ink-dimmer:      rgba(242, 234, 218, 0.40);
+  --rule:            rgba(242, 234, 218, 0.18);
+  --rule-on-paper:   rgba(23, 24, 27, 0.15);
+  --accent:          var(--gold);
+  --accent-ink:      var(--carbon);
+
+  /* Tipografía */
+  --font-display:    "Cinzel", "Trajan Pro", Georgia, serif;      /* inscripción griega */
+  --font-serif:      "Cormorant Garamond", "Didot", Georgia, serif;
+  --font-sans:       "Manrope", system-ui, -apple-system, sans-serif;
+  --font-script:     "Caveat", "Gochi Hand", cursive;            /* acento manuscrito uruguayo */
+  --font-heading:    "Archivo Black", "Helvetica Neue", sans-serif;
+
+  /* Escala de texto (fluida) */
+  --t-xs:    12px;
+  --t-sm:    14px;
+  --t-base:  16px;
+  --t-md:    18px;
+  --t-lg:    22px;
+  --t-xl:    28px;
+  --t-2xl:   38px;
+  --t-3xl:   52px;
+  --t-4xl:   72px;
+  --t-hero:  clamp(64px, 10vw, 160px);
+  --t-super: clamp(80px, 14vw, 220px);
+
+  --lh-tight: 0.95;
+  --lh-snug:  1.12;
+  --lh-body:  1.55;
+
+  /* Espaciado */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
+  --sp-9: 96px; --sp-10: 128px; --sp-11: 160px;
+
+  /* Radii */
+  --r-xs: 4px; --r-sm: 8px; --r-md: 14px; --r-lg: 22px; --r-xl: 32px;
+  --r-pill: 999px;
+
+  /* Shadows */
+  --shadow-card:    0 1px 2px rgba(0,0,0,.25), 0 14px 40px rgba(0,0,0,.35);
+  --shadow-lift:    0 20px 60px rgba(0,0,0,.45);
+  --shadow-paper:   0 8px 30px rgba(23,24,27,.10);
+  --shadow-gold:    0 6px 30px rgba(212,168,74,0.40);
+
+  /* Motion */
+  --ease-out:   cubic-bezier(.2,.7,.2,1);
+  --ease-soft:  cubic-bezier(.4,0,.2,1);
+  --ease-spring: cubic-bezier(.34,1.56,.64,1);
+  --dur-fast:   180ms;
+  --dur-med:    320ms;
+  --dur-slow:   620ms;
+}
+
+/* ===== Modo día (cream on blue inverted) ===== */
+[data-mode="day"] {
+  --bg:              var(--cream-soft);
+  --bg-elev:         var(--cream);
+  --bg-panel:        var(--bone);
+  --paper:           var(--blue-tile);
+  --paper-soft:      var(--blue-deep);
+  --ink:             var(--carbon);           /* texto principal ahora es carbón */
+  --ink-on-paper:    var(--cream);            /* texto sobre paneles azules */
+  --ink-dim:         rgba(23, 24, 27, 0.65);
+  --ink-dimmer:      rgba(23, 24, 27, 0.35);
+  --rule:            rgba(23, 24, 27, 0.15);
+  --rule-on-paper:   rgba(242, 234, 218, 0.22);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--t-base);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background var(--dur-slow) var(--ease-soft),
+              color var(--dur-slow) var(--ease-soft);
+}
+body {
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 { margin: 0; }
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: var(--lh-tight);
+}
+.serif {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+.script {
+  font-family: var(--font-script);
+  font-weight: 600;
+}
+.sans { font-family: var(--font-sans); }
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+/* ============================================================
+   Layout helpers
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 var(--sp-7);
+}
+@media (max-width: 720px) {
+  .container { padding: 0 var(--sp-5); }
+}
+
+.section {
+  position: relative;
+  padding: var(--sp-10) 0;
+}
+@media (max-width: 720px) {
+  .section { padding: var(--sp-8) 0; }
+}
+
+.section--paper {
+  background: var(--paper);
+  color: var(--ink-on-paper);
+}
+.section--paper .eyebrow { color: rgba(239, 238, 230, 0.72); }
+[data-mode="day"] .section--paper .eyebrow { color: rgba(242, 234, 218, 0.72); }
+
+/* ============================================================
+   Ornamento griego (key-border)
+   ============================================================ */
+.meander {
+  height: 28px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 20'><path d='M0 16 L0 4 L16 4 L16 12 L8 12 L8 8 L12 8 L12 16 L20 16 L20 4 L36 4 L36 12 L28 12 L28 8 L32 8 L32 16 L40 16 L40 4 L56 4 L56 12 L48 12 L48 8 L52 8 L52 16 L60 16' stroke='%23F2EADA' stroke-width='1.5' fill='none' stroke-linecap='square'/></svg>");
+  background-repeat: repeat-x;
+  background-size: auto 20px;
+  background-position: center;
+  opacity: 0.6;
+}
+[data-mode="day"] .meander {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 20'><path d='M0 16 L0 4 L16 4 L16 12 L8 12 L8 8 L12 8 L12 16 L20 16 L20 4 L36 4 L36 12 L28 12 L28 8 L32 8 L32 16 L40 16 L40 4 L56 4 L56 12 L48 12 L48 8 L52 8 L52 16 L60 16' stroke='%231C3563' stroke-width='1.5' fill='none' stroke-linecap='square'/></svg>");
+}
+
+/* ============================================================
+   Botones
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 14px 28px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--t-sm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
+  background: transparent;
+  color: inherit;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: scale(0.98); }
+
+.btn--primary {
+  background: var(--cream);
+  color: var(--carbon);
+  border-color: var(--cream);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+.btn--primary:hover { background: var(--gold); border-color: var(--gold); box-shadow: var(--shadow-gold); }
+
+.btn--gold {
+  background: var(--gold);
+  color: var(--carbon);
+  border-color: var(--gold);
+}
+.btn--gold:hover { background: var(--gold-deep); border-color: var(--gold-deep); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink-dim);
+}
+.btn--ghost:hover { border-color: var(--ink); background: rgba(242, 234, 218, 0.06); }
+
+.btn--ink-on-paper {
+  background: var(--carbon);
+  color: var(--cream);
+  border-color: var(--carbon);
+}
+.btn--ink-on-paper:hover { background: var(--carbon-soft); }
+
+/* ============================================================
+   Utilities
+   ============================================================ */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out);
+}
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.no-scroll { overflow: hidden; }
+
+/* Scrollbar */
+::selection { background: var(--gold); color: var(--carbon); }
+
+/* ============================================================
+   Marquee
+   ============================================================ */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: var(--sp-6) 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: transparent;
+}
+.marquee__track {
+  display: inline-flex;
+  animation: marquee 32s linear infinite;
+}
+.marquee__item {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(48px, 9vw, 130px);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 0 var(--sp-7);
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-5);
+}
+.marquee__item .star {
+  color: var(--gold);
+  font-size: 0.7em;
+  display: inline-block;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   Focus states
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}

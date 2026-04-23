@@ -1,0 +1,63 @@
+{
+  "negocio": {
+    "nombre": "Velhio",
+    "descripcion": "Tartas de queso artesanales muy cremosas, elaboradas a mano con receta familiar heredada.",
+    "historia": "Nacidos en Uruguay, crecidos en Madrid. Receta familiar que mejora con el tiempo.",
+    "web": "https://velhio.es"
+  },
+  "contacto": {
+    "telefono": "661 764 709",
+    "whatsapp": "https://api.whatsapp.com/send?phone=+34661764709&text=Hola%2C%20quiero%20una%20tarta",
+    "instagram": "https://www.instagram.com/velhio.r/?hl=es"
+  },
+  "ubicacion": {
+    "direccion": "Av. Reverenda Madre María Antonia, 5, bloque 1, local 3",
+    "codigo_postal": "28350",
+    "ciudad": "Ciempozuelos",
+    "provincia": "Madrid"
+  },
+  "horario": {
+    "martes_sabado": "10:00 - 14:00 y 17:00 - 20:00",
+    "domingos": "11:00 - 14:00",
+    "lunes": "Cerrado"
+  },
+  "carta": {
+    "tartas_enteras": [
+      { "nombre": "Tarta de Queso Clásica", "precios": { "grande": "30€", "mediana": "25€", "pequeña": "10€" } },
+      { "nombre": "Tarta de Queso y Nutella", "precios": { "grande": "35€", "mediana": "28€", "pequeña": "10€" } },
+      { "nombre": "Tarta de Queso y Lotus", "precios": { "grande": "35€", "mediana": "28€", "pequeña": "10€" } },
+      { "nombre": "Tarta de Queso y Oreo", "precios": { "grande": "35€", "mediana": "28€", "pequeña": "10€" } },
+      { "nombre": "Tarta de Queso y Dulce de Leche", "precios": { "grande": "35€", "mediana": "28€", "pequeña": "10€" } },
+      { "nombre": "Tarta de Queso y Café", "precios": { "grande": "35€", "mediana": "28€", "pequeña": "10€" } },
+      { "nombre": "Tarta de Queso y Pantera Rosa", "precios": { "grande": "37€", "mediana": "30€", "pequeña": "10€" } },
+      { "nombre": "Tarta de Queso y Pistacho", "precios": { "grande": "40€", "mediana": "30€", "pequeña": "10€" } },
+      { "nombre": "Tarta de Queso y Chocolate Belga", "precios": { "grande": "40€", "mediana": "30€", "pequeña": "10€" } },
+      { "nombre": "Tarta de Queso de Mango y Chocolate Blanco", "precios": { "grande": "35€", "mediana": "28€", "pequeña": "10€" } },
+      { "nombre": "Tarta de Queso y Happy Hippo", "precios": { "grande": "35€", "mediana": "28€", "pequeña": "10€" } },
+      { "nombre": "Tarta Especial del Mes", "nota": "octubre: Tarta de Queso y Donut", "precios": { "grande": "40€", "mediana": "33€", "pequeña": "11€" } }
+    ],
+    "porciones": [
+      { "tipo": "Porción Clásica", "precio": "5€" },
+      { "tipo": "Porción Sabores", "precio": "5,5€" },
+      { "tipo": "Porción Especial del Mes", "precio": "6€" }
+    ],
+    "packs": [
+      { "nombre": "Pack Degustación", "precio": "28€", "descripcion": "3 tartas pequeñas a elegir", "nota": "+1€ si incluye tarta especial del mes" }
+    ],
+    "tartas_adaptadas": [
+      { "tipo": "Diabéticos", "nombre": "Tarta de Queso Clásica (con eritritol)", "precios": { "grande": "35€", "mediana": "28€", "pequeña": "11€" }, "pedido_minimo_antelacion_horas": 48 },
+      { "tipo": "Sin Lactosa", "nombre": "Tarta de Queso Clásica", "precios": { "grande": "35€", "mediana": "28€", "pequeña": "11€" }, "pedido_minimo_antelacion_horas": 48 }
+    ]
+  },
+  "copy_extracted": {
+    "tagline": "Tartas de queso artesanales muy muy cremosas",
+    "sobre_nosotros": "Cuatro uruguayos, un horno y una obsesión: la tarta de queso perfecta. Esto no empezó con un plan de negocio, sino con un antojo. En Uruguay teníamos panaderías, así que crecimos entre masas, hornos y el olor a manteca caliente.",
+    "valores": [
+      { "titulo": "Artesanos de verdad", "texto": "No hay línea de producción, hay pasión, alma y manos (siempre limpias)" },
+      { "titulo": "Familia al completo", "texto": "Trabajamos juntos y discutimos por el horno, como en cualquier casa" },
+      { "titulo": "Nos gusta innovar", "texto": "Nos gusta crear sabores nuevos cada mes y sorprender a nuestros clientes" },
+      { "titulo": "Cercanos", "texto": "Respondemos rápido y con todo el cariño que el estrés del horno nos permita : )" }
+    ],
+    "marquee": "TE ESPERAMOS PRONTO!"
+  }
+}
