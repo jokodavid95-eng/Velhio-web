@@ -151,6 +151,17 @@ const History = () => {
           .history-greek p, .history-uruguay p { margin-left: auto; margin-right: auto; }
           .history-madrid { grid-template-columns: 1fr !important; text-align: center; }
         }
+        @media (max-width: 640px) {
+          .history-madrid {
+            padding: 28px 20px !important;
+            gap: 18px !important;
+            margin-top: 48px !important;
+          }
+          .history-madrid svg { display: none; }
+          .history-madrid .script { font-size: 26px !important; }
+          .history-madrid .display { font-size: 24px !important; }
+          .history-madrid p.serif { font-size: 15px !important; }
+        }
       `}</style>
     </section>
   );

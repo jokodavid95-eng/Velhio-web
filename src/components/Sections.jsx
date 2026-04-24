@@ -201,100 +201,148 @@ const GreekAthletes = () => (
 );
 
 // ============================================================
-// Carta completa — papel viejo, sin animación
+// Carta completa — fondo crema claro, animación de entrada
 // ============================================================
-const Menu = ({ onOrder }) => (
-  <section id="carta" style={{
-    background: `
-      radial-gradient(ellipse at 10% 0%,   rgba(255,240,190,0.55) 0%, transparent 50%),
-      radial-gradient(ellipse at 90% 100%, rgba(160,110,30,0.22)  0%, transparent 50%),
-      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(140,100,20,0.07) 28px, rgba(140,100,20,0.07) 29px),
-      linear-gradient(160deg, #F7EDCB 0%, #EDD898 20%, #F3E8B8 42%, #EAD880 62%, #F0E4AE 82%, #E6D278 100%)
-    `,
-    boxShadow: 'inset 0 0 100px rgba(100,60,10,0.18)',
-    padding: '80px 0 100px',
-    color: '#1A0E00',
-  }}>
-    <div className="container">
+const Menu = ({ onOrder }) => {
+  const sectionRef = React.useRef(null);
+  const [visible, setVisible] = React.useState(false);
 
-      {/* Título */}
-      <div style={{ textAlign: 'center', marginBottom: 52 }}>
+  React.useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.04 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <section id="carta" ref={sectionRef} style={{
+      background: 'linear-gradient(160deg, #FDFAF6 0%, #F8F4EE 50%, #FAF7F2 100%)',
+      boxShadow: 'inset 0 0 120px rgba(90,55,10,0.07)',
+      padding: '80px 0 100px',
+      color: '#1A0E00',
+    }}>
+      <style>{`
+        @keyframes carta-row-in {
+          from { opacity: 0; transform: translateY(12px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes carta-head-in {
+          from { opacity: 0; transform: translateY(-10px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 640px) {
+          .carta-name { white-space: normal !important; font-size: 12px !important; }
+          .carta-desc { display: none !important; }
+          .carta-tags { display: none !important; }
+        }
+      `}</style>
+      <div className="container">
+
+        {/* Título */}
         <div style={{
-          fontFamily: 'Cinzel, serif', fontWeight: 700, fontSize: 9,
-          letterSpacing: '0.45em', color: '#7A5518', textTransform: 'uppercase',
-          marginBottom: 10,
-        }}>CAPÍTULO III · Η ΚΑΡΤΑ</div>
-        <h2 className="display" style={{ fontSize: 'var(--t-4xl)', color: '#1A0800', letterSpacing: '0.07em' }}>
-          La carta completa
-        </h2>
-        <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: 14, marginTop: 8, color: '#6A4A10' }}>
-          Doce tartas · tres tamaños · precios en euros
-        </div>
-        <div style={{ marginTop: 14, color: '#B89040', letterSpacing: '0.35em', fontSize: 15 }}>· ✦ · V · ✦ ·</div>
-      </div>
-
-      {/* Tabla */}
-      <div style={{ maxWidth: 860, margin: '0 auto' }} className="parch-paper">
-
-        {/* Columnas header */}
-        <div className="parch-head" style={{
-          display: 'grid', gridTemplateColumns: '1fr 76px 76px 76px',
-          gap: 10, padding: '8px 14px',
-          fontFamily: 'Cinzel, serif', fontSize: 9, letterSpacing: '0.25em',
-          color: '#7A5518', textTransform: 'uppercase',
-          borderBottom: '2px solid rgba(130,90,20,0.3)',
-          marginBottom: 4,
+          textAlign: 'center', marginBottom: 52,
+          animation: visible ? 'carta-head-in 0.6s ease both' : 'none',
         }}>
-          <div>Tarta</div>
-          <div className="parch-col-s" style={{ textAlign: 'center' }}>Peq.</div>
-          <div className="parch-col-m" style={{ textAlign: 'center' }}>Med.</div>
-          <div className="parch-col-g" style={{ textAlign: 'center' }}>Gde.</div>
+          <div style={{
+            fontFamily: 'Cinzel, serif', fontWeight: 700, fontSize: 9,
+            letterSpacing: '0.45em', color: '#7A5518', textTransform: 'uppercase',
+            marginBottom: 10,
+          }}>CAPÍTULO III · Η ΚΑΡΤΑ</div>
+          <h2 className="display" style={{ fontSize: 'var(--t-4xl)', color: '#1A0800', letterSpacing: '0.07em' }}>
+            La carta completa
+          </h2>
+          <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: 14, marginTop: 8, color: '#6A4A10' }}>
+            Doce tartas · tres tamaños · precios en euros
+          </div>
+          <div style={{ marginTop: 14, color: '#B89040', letterSpacing: '0.35em', fontSize: 15 }}>· ✦ · V · ✦ ·</div>
         </div>
 
-        {TARTS.map((t, i) => (
-          <div key={t.id}
-            className="parch-row"
-            style={{
-              display: 'grid', gridTemplateColumns: '1fr 76px 76px 76px',
-              gap: 10, padding: '12px 14px',
-              borderBottom: '1px dashed rgba(130,90,20,0.18)',
-              alignItems: 'center', cursor: 'pointer',
-              transition: 'background 160ms', borderRadius: 4,
-            }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(180,130,20,0.13)'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
-            onClick={() => onOrder(t)}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
-              <span style={{ fontFamily: 'Cinzel, serif', fontSize: 10, color: '#9A7030', opacity: 0.55, flexShrink: 0 }}>
-                {String(i+1).padStart(2,'0')}.
-              </span>
-              <div style={{ minWidth: 0 }}>
-                <div style={{ fontFamily: 'Cinzel, serif', fontWeight: 700, fontSize: 14, letterSpacing: '0.03em', color: '#1A0800', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{t.name}</div>
-                <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: 11.5, color: '#5A3808', opacity: 0.72, marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{t.desc}</div>
+        {/* Tabla */}
+        <div style={{
+          maxWidth: 860, margin: '0 auto',
+          background: 'rgba(255,253,248,0.85)',
+          borderRadius: 12,
+          border: '1px solid rgba(130,90,20,0.14)',
+          boxShadow: '0 8px 40px rgba(90,55,10,0.10)',
+          overflow: 'hidden',
+        }} className="parch-paper">
+
+          {/* Columnas header */}
+          <div className="parch-head" style={{
+            display: 'grid', gridTemplateColumns: '1fr 76px 76px 76px',
+            gap: 10, padding: '10px 16px',
+            fontFamily: 'Cinzel, serif', fontSize: 9, letterSpacing: '0.25em',
+            color: '#7A5518', textTransform: 'uppercase',
+            borderBottom: '2px solid rgba(130,90,20,0.22)',
+            background: 'rgba(212,168,74,0.07)',
+          }}>
+            <div>Tarta</div>
+            <div className="parch-col-s" style={{ textAlign: 'center' }}>Peq.</div>
+            <div className="parch-col-m" style={{ textAlign: 'center' }}>Med.</div>
+            <div className="parch-col-g" style={{ textAlign: 'center' }}>Gde.</div>
+          </div>
+
+          {TARTS.map((t, i) => (
+            <div key={t.id}
+              className="parch-row"
+              style={{
+                display: 'grid', gridTemplateColumns: '1fr 76px 76px 76px',
+                gap: 10, padding: '12px 16px',
+                borderBottom: '1px solid rgba(130,90,20,0.09)',
+                alignItems: 'center', cursor: 'pointer',
+                transition: 'background 160ms', borderRadius: 0,
+                animation: visible ? `carta-row-in 0.45s ease both` : 'none',
+                animationDelay: visible ? `${0.1 + i * 0.055}s` : '0s',
+                opacity: visible ? undefined : 0,
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(212,168,74,0.10)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
+              onClick={() => onOrder(t)}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+                <span style={{ fontFamily: 'Cinzel, serif', fontSize: 10, color: '#9A7030', opacity: 0.5, flexShrink: 0 }}>
+                  {String(i+1).padStart(2,'0')}.
+                </span>
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <div className="carta-name" style={{ fontFamily: 'Cinzel, serif', fontWeight: 700, fontSize: 13.5, letterSpacing: '0.02em', color: '#1A0800', lineHeight: 1.3 }}>{t.name}</div>
+                  <div className="carta-desc" style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: 11, color: '#5A3808', opacity: 0.68, marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{t.desc}</div>
+                </div>
+                <div className="carta-tags" style={{ display: 'flex', gap: 4, flexShrink: 0 }}>
+                  {t.tag === 'favorita' && <span style={{ background: '#C8A030', color: '#fff', padding: '1px 7px', borderRadius: 999, fontSize: 8, fontFamily: 'Cinzel, serif', whiteSpace: 'nowrap' }}>★ Fav</span>}
+                  {t.tag === 'uruguaya' && <span style={{ background: '#2A5A8A', color: '#fff', padding: '1px 6px', borderRadius: 999, fontSize: 9 }}>🇺🇾</span>}
+                  {t.tag === 'especial'  && <span style={{ background: '#B84C38', color: '#fff', padding: '1px 7px', borderRadius: 999, fontSize: 8, fontFamily: 'Cinzel, serif' }}>Del mes</span>}
+                </div>
               </div>
-              {t.tag === 'favorita' && <span style={{ background: '#C8A030', color: '#fff', padding: '1px 8px', borderRadius: 999, fontSize: 8.5, fontFamily: 'Cinzel, serif', flexShrink: 0, whiteSpace: 'nowrap' }}>★ Fav</span>}
-              {t.tag === 'uruguaya' && <span style={{ background: '#2A5A8A', color: '#fff', padding: '1px 7px', borderRadius: 999, fontSize: 9, flexShrink: 0 }}>🇺🇾</span>}
-              {t.tag === 'especial'  && <span style={{ background: '#B84C38', color: '#fff', padding: '1px 8px', borderRadius: 999, fontSize: 8.5, fontFamily: 'Cinzel, serif', flexShrink: 0 }}>Del mes</span>}
+              <div className="parch-col-s" style={{ textAlign: 'center', fontFamily: 'Cinzel, serif', fontWeight: 600, fontSize: 14, color: '#1A0E00' }}>{t.price.s}</div>
+              <div className="parch-col-m" style={{ textAlign: 'center', fontFamily: 'Cinzel, serif', fontWeight: 600, fontSize: 14, color: '#1A0E00' }}>{t.price.m}</div>
+              <div className="parch-col-g" style={{ textAlign: 'center', fontFamily: 'Cinzel, serif', fontWeight: 700, fontSize: 15, color: '#7A5518' }}>{t.price.g}</div>
             </div>
-            <div className="parch-col-s" style={{ textAlign: 'center', fontFamily: 'Cinzel, serif', fontWeight: 600, fontSize: 15, color: '#1A0E00' }}>{t.price.s}</div>
-            <div className="parch-col-m" style={{ textAlign: 'center', fontFamily: 'Cinzel, serif', fontWeight: 600, fontSize: 15, color: '#1A0E00' }}>{t.price.m}</div>
-            <div className="parch-col-g" style={{ textAlign: 'center', fontFamily: 'Cinzel, serif', fontWeight: 700, fontSize: 16, color: '#7A5518' }}>{t.price.g}</div>
-          </div>
-        ))}
+          ))}
 
-        {/* Pie */}
-        <div style={{ textAlign: 'center', marginTop: 24, paddingTop: 18, borderTop: '1.5px solid rgba(130,90,20,0.22)' }}>
-          <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: 13, color: '#6A4A10' }}>
-            *Porciones individuales: 5€ — 6€ · Especiales con 48h de antelación
+          {/* Pie */}
+          <div style={{
+            textAlign: 'center', padding: '18px 16px 22px',
+            borderTop: '1.5px solid rgba(130,90,20,0.14)',
+            background: 'rgba(212,168,74,0.04)',
+            animation: visible ? `carta-row-in 0.5s ease both` : 'none',
+            animationDelay: visible ? `${0.1 + TARTS.length * 0.055 + 0.1}s` : '0s',
+            opacity: visible ? undefined : 0,
+          }}>
+            <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: 12, color: '#6A4A10' }}>
+              *Porciones individuales: 5€ — 6€ · Especiales con 48h de antelación
+            </div>
+            <div style={{ color: '#B89040', letterSpacing: '0.35em', fontSize: 15, marginTop: 10 }}>· V ·</div>
           </div>
-          <div style={{ color: '#B89040', letterSpacing: '0.35em', fontSize: 16, marginTop: 14 }}>· V ·</div>
         </div>
-      </div>
 
-    </div>
-  </section>
-);
+      </div>
+    </section>
+  );
+};
 
 // ============================================================
 // Pack Degustación
@@ -349,7 +397,7 @@ const Pack = ({ onOrder }) => {
           </div>
 
           {/* ── Columna derecha: caja ── */}
-          <div style={{
+          <div className="pack-box" style={{
             background: 'var(--bg-elev)',
             border: '2px solid var(--gold)',
             borderRadius: 'var(--r-lg)',
@@ -432,6 +480,11 @@ const Pack = ({ onOrder }) => {
         }
         @media (max-width: 1000px) {
           .pack-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+        }
+        @media (max-width: 640px) {
+          .pack-box { padding: 16px 12px 20px !important; }
+          .pack-grid h2 { font-size: clamp(36px,10vw,52px) !important; }
+          .pack-grid .serif[style] { font-size: 16px !important; }
         }
       `}</style>
     </section>
