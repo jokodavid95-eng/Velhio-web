@@ -245,9 +245,13 @@ const Hero = ({ onOpenMenu, onOrder }) => {
         }}>DESDE URUGUAY · HORNEADAS EN MADRID · CON ALMA GRIEGA</div>
 
         {/* Botones */}
-        <div className="hero-btns" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-          <button onClick={onOrder}    className="btn btn--gold"  style={{ flex: '1 1 180px', maxWidth: 240 }}>Pedir por WhatsApp</button>
-          <button onClick={onOpenMenu} className="btn btn--ghost" style={{ flex: '1 1 140px', maxWidth: 200, borderColor: 'var(--cream)', color: 'var(--cream)' }}>Ver la carta</button>
+        <div className="hero-btns" style={{
+          display: 'flex', gap: 14,
+          justifyContent: 'center', alignItems: 'center',
+          flexWrap: 'wrap', width: '100%',
+        }}>
+          <button onClick={onOrder}    className="btn btn--gold"  style={{ minWidth: 210 }}>Pedir por WhatsApp</button>
+          <button onClick={onOpenMenu} className="btn btn--ghost" style={{ minWidth: 150, borderColor: 'var(--cream)', color: 'var(--cream)' }}>Ver la carta</button>
         </div>
       </div>
 

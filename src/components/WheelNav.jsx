@@ -148,11 +148,11 @@ const WheelNav = ({ sections, onNav, activeSection }) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        background: scrolled ? 'rgba(28,53,99,0.75)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(14px) saturate(150%)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(14px) saturate(150%)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(242,234,218,0.1)' : '1px solid transparent',
-        transition: 'all 320ms cubic-bezier(.4,0,.2,1)',
+        background: 'transparent',
+        backdropFilter: 'none',
+        WebkitBackdropFilter: 'none',
+        borderBottom: '1px solid transparent',
+        transition: 'none',
       }}>
         {/* Logo */}
         <div onClick={() => onNav('inicio')} style={{
