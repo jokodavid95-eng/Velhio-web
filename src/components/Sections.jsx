@@ -905,6 +905,5 @@ const VideoSection = () => (
     </div>
   </section>
 );
-};
 
 export { Favorites, GreekAthletes, Menu, Pack, TartOfMonth, Special, Contact, Footer, VideoSection };
