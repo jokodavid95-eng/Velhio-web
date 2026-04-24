@@ -3,7 +3,7 @@ import WheelNav from './components/WheelNav';
 import Hero from './components/Hero';
 import History from './components/History';
 import MeltingTarts from './components/MeltingTarts';
-import { Favorites, RollingCoins, Menu, Pack, TartOfMonth, Special, Contact, Footer } from './components/Sections';
+import { Favorites, GreekAthletes, Menu, Pack, TartOfMonth, Special, Contact, Footer, VideoSection } from './components/Sections';
 import { useTweaks, TweaksPanel, TweakSection, TweakRadio } from './components/TweaksPanel';
 
 const TWEAK_DEFAULTS = { mode: 'night' };
@@ -13,7 +13,7 @@ const SECTIONS = [
   { id: 'historia',   numeral: 'II',   label: 'Historia',         hint: 'de Atenas a Ciempozuelos' },
   { id: 'favoritas',  numeral: 'III',  label: 'Más pedidas',      hint: 'las cuatro de siempre' },
   { id: 'carta',      numeral: 'IV',   label: 'La carta',         hint: 'doce tartas, tres tamaños' },
-  { id: 'pack',       numeral: 'V',    label: 'Pack degustación', hint: 'tres pequeñas a elegir' },
+  { id: 'pack',       numeral: 'V',    label: 'Degustación',      hint: 'tres pequeñas a elegir' },
   { id: 'mes',        numeral: 'VI',   label: 'Tarta del mes',    hint: 'octubre: queso & donut' },
   { id: 'especiales', numeral: 'VII',  label: 'Especiales',       hint: 'sin lactosa · diabéticos' },
   { id: 'contacto',   numeral: 'VIII', label: 'Contacto',         hint: 'pedidos y dirección' },
@@ -77,12 +77,14 @@ function App() {
         <MeltingTarts variants={['nutella', 'oreo', 'pantera', 'mango']} />
 
         <div>
-          <RollingCoins />
+          <GreekAthletes />
         </div>
 
         <div>
           <Menu onOrder={handleOrder} />
         </div>
+
+        <VideoSection />
 
         <div>
           <Pack onOrder={handleOrder} />
