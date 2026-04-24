@@ -280,7 +280,7 @@ const Menu = ({ onOrder }) => {
               boxShadow: 'inset 5px 0 18px rgba(110,65,15,0.16), inset -5px 0 18px rgba(110,65,15,0.16), inset 0 -8px 24px rgba(90,50,10,0.12)',
               padding: '32px 44px 36px',
               color: '#1A0E00',
-            }}>
+            }} className="parch-paper">
 
               {/* Cabecera */}
               <div style={{ textAlign: 'center', marginBottom: 22, paddingBottom: 18, borderBottom: '1.5px solid rgba(130,90,20,0.3)' }}>
@@ -298,7 +298,7 @@ const Menu = ({ onOrder }) => {
               </div>
 
               {/* Columnas header */}
-              <div style={{
+              <div className="parch-head" style={{
                 display: 'grid', gridTemplateColumns: '1fr 76px 76px 76px',
                 gap: 10, padding: '6px 12px',
                 fontFamily: 'Cinzel, serif', fontSize: 9, letterSpacing: '0.22em',
@@ -306,13 +306,14 @@ const Menu = ({ onOrder }) => {
                 borderBottom: '1px solid rgba(130,90,20,0.22)', marginBottom: 3,
               }}>
                 <div>Tarta</div>
-                <div style={{ textAlign: 'center' }}>Peq.</div>
-                <div style={{ textAlign: 'center' }}>Med.</div>
-                <div style={{ textAlign: 'center' }}>Gde.</div>
+                <div className="parch-col-s" style={{ textAlign: 'center' }}>Peq.</div>
+                <div className="parch-col-m" style={{ textAlign: 'center' }}>Med.</div>
+                <div className="parch-col-g" style={{ textAlign: 'center' }}>Gde.</div>
               </div>
 
               {TARTS.map((t, i) => (
                 <div key={t.id}
+                  className="parch-row"
                   style={{
                     display: 'grid', gridTemplateColumns: '1fr 76px 76px 76px',
                     gap: 10, padding: '11px 12px',
@@ -334,9 +335,9 @@ const Menu = ({ onOrder }) => {
                     {t.tag === 'uruguaya' && <span style={{ background: '#2A5A8A', color: '#fff', padding: '1px 7px', borderRadius: 999, fontSize: 9, flexShrink: 0 }}>🇺🇾</span>}
                     {t.tag === 'especial' && <span style={{ background: '#B84C38', color: '#fff', padding: '1px 8px', borderRadius: 999, fontSize: 8.5, fontFamily: 'Cinzel, serif', flexShrink: 0 }}>Del mes</span>}
                   </div>
-                  <div style={{ textAlign: 'center', fontFamily: 'Cinzel, serif', fontWeight: 600, fontSize: 15, color: '#1A0E00' }}>{t.price.s}</div>
-                  <div style={{ textAlign: 'center', fontFamily: 'Cinzel, serif', fontWeight: 600, fontSize: 15, color: '#1A0E00' }}>{t.price.m}</div>
-                  <div style={{ textAlign: 'center', fontFamily: 'Cinzel, serif', fontWeight: 700, fontSize: 16, color: '#7A5518' }}>{t.price.g}</div>
+                  <div className="parch-col-s" style={{ textAlign: 'center', fontFamily: 'Cinzel, serif', fontWeight: 600, fontSize: 15, color: '#1A0E00' }}>{t.price.s}</div>
+                  <div className="parch-col-m" style={{ textAlign: 'center', fontFamily: 'Cinzel, serif', fontWeight: 600, fontSize: 15, color: '#1A0E00' }}>{t.price.m}</div>
+                  <div className="parch-col-g" style={{ textAlign: 'center', fontFamily: 'Cinzel, serif', fontWeight: 700, fontSize: 16, color: '#7A5518' }}>{t.price.g}</div>
                 </div>
               ))}
 

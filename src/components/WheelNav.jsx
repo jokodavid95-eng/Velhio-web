@@ -10,6 +10,9 @@ const WheelNav = ({ sections, onNav, activeSection }) => {
   const [hover, setHover]     = React.useState(null);
   const [rotation, setRotation] = React.useState(0);
   const [scrolled, setScrolled] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(
+    typeof window !== 'undefined' && window.innerWidth < 680
+  );
 
   const plateRef      = React.useRef(null);
   const touchState    = React.useRef({ startAngle: 0, startRot: 0, active: false });
@@ -19,6 +22,13 @@ const WheelNav = ({ sections, onNav, activeSection }) => {
   const anglePerSlice = 360 / n;
   const R_OUTER       = 280;
   const R_INNER       = 100;
+
+  /* ── resize: detectar móvil ── */
+  React.useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 680);
+    window.addEventListener('resize', onResize, { passive: true });
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   /* ── scroll del header ── */
   React.useEffect(() => {
@@ -32,12 +42,7 @@ const WheelNav = ({ sections, onNav, activeSection }) => {
     document.body.style.overflow = open ? 'hidden' : '';
   }, [open]);
 
-  /* ── girar al cambiar sección activa (solo si no está abierto) ── */
-  React.useEffect(() => {
-    if (open) return;
-    const i = sections.findIndex(s => s.id === activeSection);
-    if (i >= 0) setRotation(-i * anglePerSlice);
-  }, [activeSection, sections, open, anglePerSlice]);
+  /* ── NO auto-reset: la rueda queda donde el usuario la dejó ── */
 
   /* ── SCROLL DEL RATÓN → girar rueda ── */
   React.useEffect(() => {
@@ -189,7 +194,7 @@ const WheelNav = ({ sections, onNav, activeSection }) => {
             transition: 'all 240ms cubic-bezier(.2,.7,.2,1)',
           }}
         >
-          <span>{open ? 'Cerrar' : 'Elige porción'}</span>
+          <span className="wheelnav-btn-text">{open ? 'Cerrar' : 'Elige porción'}</span>
           <div style={{
             position: 'relative',
             width: 36, height: 36,
@@ -233,7 +238,7 @@ const WheelNav = ({ sections, onNav, activeSection }) => {
         style={{
           position: 'fixed',
           top: '50%', left: '50%',
-          transform: `translate(-50%, -50%) scale(${open ? 1 : 0.6})`,
+          transform: `translate(-50%, -50%) scale(${open ? (isMobile ? 0.60 : 1) : 0.55})`,
           opacity: open ? 1 : 0,
           pointerEvents: open ? 'auto' : 'none',
           zIndex: 75,

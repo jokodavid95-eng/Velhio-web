@@ -311,3 +311,69 @@ h1, h2, h3, h4, h5 { margin: 0; }
   outline-offset: 3px;
   border-radius: var(--r-sm);
 }
+
+/* ============================================================
+   MÓVIL — correcciones generales
+   ============================================================ */
+@media (max-width: 640px) {
+
+  /* Tipografía: reducir tamaños enormes */
+  :root {
+    --t-4xl: clamp(36px, 9vw, 52px);
+    --t-3xl: clamp(28px, 8vw, 40px);
+    --t-2xl: clamp(24px, 7vw, 34px);
+    --t-hero: clamp(48px, 12vw, 80px);
+  }
+
+  /* Historia: colapsar las dos columnas + línea central */
+  .history-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+  .history-col-sep { display: none !important; }
+  .history-greek  { text-align: left !important; }
+  .history-greek svg { margin-left: 0 !important; }
+  .history-greek p  { margin-left: 0 !important; max-width: 100% !important; }
+  .history-greek > div[style] { border-right: none !important; border-left: 2px solid var(--gold) !important; }
+
+  /* Pack: ya tiene media query en el componente, refuerzo */
+  .pack-grid { grid-template-columns: 1fr !important; }
+
+  /* Sección tarta del mes */
+  .month-grid { grid-template-columns: 1fr !important; }
+
+  /* Horario: colapsar */
+  .hours-grid { grid-template-columns: 1fr !important; text-align: center !important; gap: 24px !important; }
+  .hours-grid > div:nth-child(2) { grid-template-columns: 1fr !important; }
+
+  /* Favoritas: forzar columna única si el auto-fit no la pilla */
+  #favoritas .display { font-size: 20px !important; }
+
+  /* Pergamino carta: ocultar precios medios/pequeños, mostrar solo grande */
+  .parch-col-s, .parch-col-m { display: none !important; }
+  .parch-col-g { font-size: 14px !important; }
+  .parch-row   { grid-template-columns: 1fr 58px !important; }
+  .parch-head  { grid-template-columns: 1fr 58px !important; }
+
+  /* Secciones: padding vertical más compacto */
+  .section { padding: 48px 0 !important; }
+
+  /* Botones: nunca más anchos que la pantalla */
+  .btn { white-space: normal !important; text-align: center !important; }
+
+  /* Hero tagline: permite salto de línea en móvil */
+  .hero-pill { white-space: normal !important; text-align: center !important; font-size: 7px !important; }
+
+  /* Menú rueda: el texto del botón "Elige porción" ocupa mucho */
+  .wheelnav-btn-text { display: none; }
+
+  /* Pergamino: menos padding en móvil */
+  .parch-paper { padding: 20px 16px 20px !important; }
+
+  /* Carta: varilla a pantalla completa */
+  #carta .container { padding: 0 8px !important; }
+  #carta h2.display  { font-size: clamp(28px, 8vw, 40px) !important; }
+
+  /* Sección especiales */
+  #especiales .display { font-size: 26px !important; }
+}

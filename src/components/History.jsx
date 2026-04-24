@@ -62,7 +62,7 @@ const History = () => {
             alignSelf: 'stretch',
             minHeight: 400,
             position: 'relative',
-          }} className="history-line">
+          }} className="history-line history-col-sep">
             {/* marcadores */}
             {[0.15, 0.5, 0.85].map((t, i) => (
               <div key={i} style={{
