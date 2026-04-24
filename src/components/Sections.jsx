@@ -441,11 +441,33 @@ const Pack = ({ onOrder }) => {
 // ============================================================
 // Tarta del mes
 // ============================================================
+const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
 const TartOfMonth = ({ onOrder }) => {
   const special = TARTS.find(t => t.id === 'donut');
+  const mesActual = MESES[new Date().getMonth()];
   return (
-    <section id="mes" className="section section--paper" style={{ position: 'relative' }}>
-      <div className="container">
+    <section id="mes" className="section section--paper" style={{ position: 'relative', overflow: 'hidden' }}>
+
+      {/* ── MES ACTUAL translúcido de fondo ── */}
+      <div style={{
+        position: 'absolute',
+        top: '50%', left: '50%',
+        transform: 'translate(-50%, -50%)',
+        fontFamily: 'Cinzel, serif',
+        fontWeight: 900,
+        fontSize: 'clamp(80px, 18vw, 240px)',
+        lineHeight: 1,
+        letterSpacing: '0.04em',
+        textTransform: 'uppercase',
+        color: 'var(--ink-on-paper)',
+        opacity: 0.06,
+        pointerEvents: 'none',
+        userSelect: 'none',
+        whiteSpace: 'nowrap',
+        zIndex: 0,
+      }}>{mesActual}</div>
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1.2fr',
