@@ -199,7 +199,7 @@ const Hero = ({ onOpenMenu, onOrder }) => {
                 <g transform="translate(200 8)">
                   <circle r="20" fill="var(--gold)" stroke="var(--cream)" strokeWidth="2"/>
                   <text y="6" textAnchor="middle"
-                    fontFamily="Cinzel, serif" fontWeight="700" fontSize="14" fill="#17181B">Ω</text>
+                    fontFamily="Cinzel, serif" fontWeight="700" fontSize="14" fill="#17181B">V</text>
                 </g>
               </g>
             </svg>

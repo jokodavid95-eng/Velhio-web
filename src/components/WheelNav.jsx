@@ -194,7 +194,7 @@ const WheelNav = ({ sections, onNav, activeSection }) => {
             transition: 'all 240ms cubic-bezier(.2,.7,.2,1)',
           }}
         >
-          <span className="wheelnav-btn-text">{open ? 'Cerrar' : 'Elige porción'}</span>
+          <span className="wheelnav-btn-text">{open ? 'Cerrar' : 'Menú'}</span>
           <div style={{
             position: 'relative',
             width: 36, height: 36,
